@@ -62,13 +62,11 @@ func (c *Cache) keepMaxSize() {
 
 // Insert stores the element el with key k in the Cache. If the Cache
 // is already full one element is deleted and then store el.
-func (c *Cache) Insert(k string, el interface{}) (interface{}, bool) {
+func (c *Cache) Insert(k string, el interface{}) {
 	c.keepMaxSize()
 	c.Lock()
-	v, ok := c.m[k]
 	c.m[k] = el
 	c.Unlock()
-	return v, ok
 }
 
 // Delete deletes the element of key k from Cache.
